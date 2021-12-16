@@ -1,0 +1,19 @@
+
+name: Databricks Checkout
+author: Frank Wisniewski
+description: >
+  Checkouts this repository into your Databricks workspace
+inputs:
+  location:
+    description: DBFS location for this repository
+    required: false
+# outputs:
+#   location:
+#     description: DBFS location for this repository
+#     value: ${{ steps.checkout.outputs.result }}
+runs:
+  using: composite
+  steps:
+    - run: echo "Hello Checkout!"
+      id: checkout
+      shell: bash

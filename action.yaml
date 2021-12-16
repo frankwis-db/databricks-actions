@@ -1,0 +1,11 @@
+
+name: Hello Root
+author: Frank Wisniewski
+description: >
+  Issues a hello world from the root action
+runs:
+  using: composite
+  steps:
+    - run: echo "Hello Root!"
+      id: hello
+      shell: bash
