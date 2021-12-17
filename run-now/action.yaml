@@ -1,5 +1,5 @@
-name: Databricks Dbt Job Create 
-description: Create a new dbt job on Databricks
+name: Databricks Jobs Run Now
+description: Trigger a new job run
 
 inputs:
   host:
@@ -8,14 +8,8 @@ inputs:
   token:
     description: Databricks API token
     required: true
-  project-directory:
-    description: Project DBFS path on Databricks
-    required: true
-  target:
-    description: Target environment
-    required: true
-  operation:
-    description: dbt operation command type
+  job-id:
+    description: Job Id
     required: true
 
 runs:
@@ -29,10 +23,8 @@ runs:
         python -m pip install -r "${GITHUB_ACTION_PATH}/requirements.txt"
       shell: bash
     - run: |
-        python "${GITHUB_ACTION_PATH}/create_dbt_job.py" \
+        python "${GITHUB_ACTION_PATH}/run_now.py" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
-          --project-directory ${{ inputs.project-directory }} \
-          --target ${{ inputs.target }} \
-          --operation ${{ inputs.operation }}
+          --job-id ${{ inputs.job-id }}
       shell: bash
