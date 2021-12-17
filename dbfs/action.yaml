@@ -8,9 +8,20 @@ inputs:
   token:
     description: Databricks API token
     required: true
-  path:
-    description: Target repo path on Databricks
-    required: true
+  recursive:
+    description: Whether copy action should be executed recursively
+      default: true
+      type: boolean
+  overwrite:
+    description: Whether to overwrite files
+      default: true
+      type: boolean
+  source:
+    description: Local file/directory to copy over
+      default: "."
+  destination:
+    description: Path on DBFS, needs to start with `/`
+    default: '$GITHUB_REPOSITORY'
 
 runs:
   using: composite
@@ -23,10 +34,12 @@ runs:
         python -m pip install -r "${GITHUB_ACTION_PATH}/requirements.txt"
       shell: bash
     - run: |
-        python "${GITHUB_ACTION_PATH}/checkout.py" \
+        python "${GITHUB_ACTION_PATH}/dbfs.py" \
           --url "https://github.com/${GITHUB_REPOSITORY}" \
-          --branch "${GITHUB_REF}" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
-          --path ${{ inputs.path }}
+          --recursive ${{ inputs.recursive }} \
+          --overwrite ${{ inputs.overwrite }} \
+          --source ${{ inputs.source }} \
+          --destination ${{ inputs.destination }}
       shell: bash

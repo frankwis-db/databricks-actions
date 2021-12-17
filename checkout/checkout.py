@@ -25,7 +25,6 @@ def push_repo(url, path, host, token, branch):
         # check the output
         logging.info(f'No repo found at {path}.')
         repo_id = repos_api.create(url=url, provider='gitHub', path=path)['id']
-        print(repo_id)
         logging.info(f'Created repo at {path} with ID {repo_id}.')
     repos_api.update(repo_id, branch=branch, tag=None)
     logging.info(f'Updated the repo to branch {branch}.')

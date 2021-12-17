@@ -38,23 +38,13 @@ _Note_: After private preview the prefix `./.` has to be removed from your workf
 This action requires a [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with repo access. See the [Databricks documentation](https://docs.databricks.com/repos.html#configure-your-git-integration-with-databricks) on how to configure the Git integration.
 
 ```yaml
-name: Databricks Workflow
-on: push
-jobs:
-  databricks:
-    name: Sync Repository
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Databricks Actions
-        uses: actions/checkout@v2
-        with:
-          repository: frankwis-db/databricks-action
-          token: ${{ secrets.GH_TOKEN }}
-          path: .databricks/actions
-      - name: Databricks Checkout
-        uses: ./.databricks/actions/checkout
-        with:
-            host: ${{ secrets.DATABRICKS_HOST }}
-            token: ${{ secrets.DATABRICKS_TOKEN }}
-            path: /Repos/{user}/{folder}
+uses: ./.databricks/actions/checkout
+with:
+    host: ${{ secrets.DATABRICKS_HOST }}
+    token: ${{ secrets.DATABRICKS_TOKEN }}
+    path: /Repos/{user}/{folder}
 ```
+See [sync-repo.yaml](examples/sync-repo.yaml) for a full workflow example
+
+### DBFS
+ToDo
