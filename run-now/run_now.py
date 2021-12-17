@@ -19,4 +19,4 @@ def run_now(job_id, host, token):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(message)s')
-    push_repo()
+    run_now()
