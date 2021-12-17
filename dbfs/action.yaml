@@ -10,18 +10,18 @@ inputs:
     required: true
   recursive:
     description: Whether copy action should be executed recursively
-      default: true
-      type: boolean
+    default: true
+    type: boolean
   overwrite:
     description: Whether to overwrite files
-      default: true
-      type: boolean
+    default: true
+    type: boolean
   source:
     description: Local file/directory to copy over
-      default: "."
+    default: '${GITHUB_WORKSPACE}'
   destination:
     description: Path on DBFS, needs to start with `/`
-    default: '$GITHUB_REPOSITORY'
+    default: '/${GITHUB_REPOSITORY}'
 
 runs:
   using: composite
@@ -35,11 +35,10 @@ runs:
       shell: bash
     - run: |
         python "${GITHUB_ACTION_PATH}/dbfs.py" \
-          --url "https://github.com/${GITHUB_REPOSITORY}" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
           --recursive ${{ inputs.recursive }} \
           --overwrite ${{ inputs.overwrite }} \
-          --source ${{ inputs.source }} \
-          --destination ${{ inputs.destination }}
+          --source "${{ inputs.source }}" \
+          --destination "${{ inputs.destination }}"
       shell: bash
