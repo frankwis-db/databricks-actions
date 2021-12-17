@@ -1,0 +1,19 @@
+name: Databricks Workflow
+on: push
+jobs:
+  databricks:
+    name: Sync Repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Databricks Actions
+        uses: actions/checkout@v2
+        with:
+          repository: frankwis-db/databricks-action
+          token: ${{ secrets.GH_TOKEN }}
+          path: .databricks/actions
+      - name: Databricks Checkout
+        uses: ./.databricks/actions/checkout
+        with:
+            host: ${{ secrets.DATABRICKS_HOST }}
+            token: ${{ secrets.DATABRICKS_TOKEN }}
+            path: /Repos/{user}/{folder}
