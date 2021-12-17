@@ -28,7 +28,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
           'depends_on': [],
           'new_cluster': {
             'spark_version': '9.1.x-scala2.12',
-            'node_type_id': 'Standard_DS3_v2',
+            'node_type_id': 'r3.2xlarge',
             'spark_conf': {
               'spark.speculation': True
             },
