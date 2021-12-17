@@ -35,7 +35,6 @@ runs:
       shell: bash
     - run: |
         python "${GITHUB_ACTION_PATH}/dbfs.py" \
-          --url "https://github.com/${GITHUB_REPOSITORY}" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
           --recursive ${{ inputs.recursive }} \
