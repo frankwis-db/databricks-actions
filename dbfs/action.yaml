@@ -11,20 +11,16 @@ inputs:
   recursive:
     description: Whether copy action should be executed recursively
       default: true
-      required: false
       type: boolean
   overwrite:
     description: Whether to overwrite files
       default: true
-      required: false
       type: boolean
   source:
     description: Local file/directory to copy over
       default: "."
-      required: false
   destination:
     description: Path on DBFS, needs to start with `/`
-    required: true
     default: '$GITHUB_REPOSITORY'
 
 runs:
