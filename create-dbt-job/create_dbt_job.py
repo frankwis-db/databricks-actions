@@ -48,7 +48,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
           'retry_on_timeout': False
         }
       ],
-      'job_clusters': null,
+      'job_clusters': None,
       'email_notifications': {
         'on_start': [],
         'on_success': [],
@@ -56,7 +56,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
         'no_alert_for_skipped_runs': False
       },
       'timeout_seconds': 86400,
-      'schedule': null,
+      'schedule': None,
       'max_concurrent_runs': 10,
       'format': 'MULTI_TASK',
       'access_control_list': []
