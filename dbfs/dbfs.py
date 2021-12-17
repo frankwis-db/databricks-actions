@@ -19,7 +19,7 @@ def dbfs_copy(overwrite, source, destination, host, token):
     target = f"dbfs:{destination}"
     logging.info(f'Copying from {source} to {target}.')
 
-    for file_name in glob(source):
+    for file_name in glob(source, recursive = True):
         full_local_path = path.abspath(file_name)
         if path.isdir(full_local_path):
             continue

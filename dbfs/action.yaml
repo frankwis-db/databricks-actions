@@ -14,7 +14,7 @@ inputs:
     type: boolean
   source:
     description: Local file/directory to copy over
-    default: '${GITHUB_WORKSPACE}'
+    default: '${GITHUB_WORKSPACE}/**'
   destination:
     description: Path on DBFS, needs to start with `/`
     default: '/${GITHUB_REPOSITORY}'
