@@ -45,7 +45,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
           'timeout_seconds': 86400,
           'max_retries': 3,
           'min_retry_interval_millis': 2000,
-          'retry_on_timeout': false
+          'retry_on_timeout': False
         }
       ],
       'job_clusters': null,
@@ -53,7 +53,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
         'on_start': [],
         'on_success': [],
         'on_failure': [],
-        'no_alert_for_skipped_runs': false
+        'no_alert_for_skipped_runs': False
       },
       'timeout_seconds': 86400,
       'schedule': null,
