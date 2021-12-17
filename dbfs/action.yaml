@@ -40,6 +40,6 @@ runs:
           --token ${{ inputs.token }} \
           --recursive ${{ inputs.recursive }} \
           --overwrite ${{ inputs.overwrite }} \
-          --source ${{ inputs.source }} \
-          --destination ${{ inputs.destination }}
+          --source "${{ inputs.source }}" \
+          --destination "${{ inputs.destination }}"
       shell: bash
