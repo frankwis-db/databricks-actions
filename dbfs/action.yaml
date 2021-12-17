@@ -18,10 +18,10 @@ inputs:
     type: boolean
   source:
     description: Local file/directory to copy over
-    default: "."
+    default: '${GITHUB_WORKSPACE}'
   destination:
     description: Path on DBFS, needs to start with `/`
-    default: '${GITHUB_REPOSITORY}'
+    default: '/${GITHUB_REPOSITORY}'
 
 runs:
   using: composite
