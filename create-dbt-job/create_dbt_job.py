@@ -30,7 +30,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
             'spark_version': '9.1.x-scala2.12',
             'node_type_id': 'Standard_DS3_v2',
             'spark_conf': {
-              'spark.speculation': 'true'
+              'spark.speculation': True
             },
             'aws_attributes': {
               'availability': 'SPOT',
