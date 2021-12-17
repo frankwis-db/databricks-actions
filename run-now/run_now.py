@@ -12,7 +12,7 @@ def run_now(job_id, host, token):
     api_client = ApiClient(host=host, token=token)
     jobs_api = JobsApi(api_client)
     try:
-        run_id = jobs_api.run_now(job_id=job_id)['run_id']
+        run_id = jobs_api.run_now(job_id=job_id, jar_params=None, notebook_params=None, python_params=None, spark_submit_params=None)['run_id']
         logging.info(f'Run {run_id} was trigger for job {job_id}.')
     except RuntimeError:
         logging.info(f'Cannot run job {job_id}.')
