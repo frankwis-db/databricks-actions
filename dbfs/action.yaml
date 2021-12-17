@@ -21,7 +21,7 @@ inputs:
     default: "."
   destination:
     description: Path on DBFS, needs to start with `/`
-    default: '$GITHUB_REPOSITORY'
+    default: '${GITHUB_REPOSITORY}'
 
 runs:
   using: composite
