@@ -63,6 +63,7 @@ def create_dbt_job(project_directory, target, operation, host, token):
     }
     job_id = jobs_api.create_job(json=jobs_conf)['job_id']
     logging.info(f'Successfully created job {job_id}.')
+    return job_id
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(message)s')
