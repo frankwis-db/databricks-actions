@@ -1,5 +1,5 @@
-name: Databricks Checkout
-description: Push a branch to Databricks Repos. If the repo doesn't exist, create it first.
+name: DBFS Copy
+description: Copy files to DBFS
 
 inputs:
   host:
@@ -8,17 +8,13 @@ inputs:
   token:
     description: Databricks API token
     required: true
-  recursive:
-    description: Whether copy action should be executed recursively
-    default: true
-    type: boolean
   overwrite:
     description: Whether to overwrite files
     default: true
     type: boolean
   source:
     description: Local file/directory to copy over
-    default: '${GITHUB_WORKSPACE}'
+    default: '${GITHUB_WORKSPACE}/**'
   destination:
     description: Path on DBFS, needs to start with `/`
     default: '/${GITHUB_REPOSITORY}'
@@ -37,7 +33,6 @@ runs:
         python "${GITHUB_ACTION_PATH}/dbfs.py" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
-          --recursive ${{ inputs.recursive }} \
           --overwrite ${{ inputs.overwrite }} \
           --source "${{ inputs.source }}" \
           --destination "${{ inputs.destination }}"
