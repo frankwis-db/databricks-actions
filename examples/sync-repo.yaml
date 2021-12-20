@@ -5,12 +5,6 @@ jobs:
     name: Sync Repository
     runs-on: ubuntu-latest
     steps:
-      - name: Install Databricks Actions
-        uses: actions/checkout@v2
-        with:
-          repository: frankwis-db/databricks-action
-          token: ${{ secrets.GH_TOKEN }}
-          path: .databricks/actions
       - name: Databricks Checkout
         uses: ./.databricks/actions/checkout
         with:
