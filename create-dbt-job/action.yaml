@@ -18,8 +18,9 @@ inputs:
     description: dbt operation command type
     required: true
 outputs:
-  job_id:
+  job-id:
     description: Unique identifier for the newly created job.
+    value: ${{ steps.create-dbt-job.outputs.jobid }}
 
 runs:
   using: composite
@@ -31,14 +32,15 @@ runs:
         python -m pip install --upgrade pip wheel
         python -m pip install -r "${GITHUB_ACTION_PATH}/requirements.txt"
       shell: bash
-    - run: |
-        output=$(python "${GITHUB_ACTION_PATH}/create_dbt_job.py" \
+    - id: create-dbt-job
+      run: |
+        result=$(python "${GITHUB_ACTION_PATH}/create_dbt_job.py" \
           --host ${{ inputs.host }} \
           --token ${{ inputs.token }} \
           --project-directory ${{ inputs.project-directory }} \
           --target ${{ inputs.target }} \
-          --operation ${{ inputs.operation }}
+          --operation ${{ inputs.operation }} \
           2>&1)
-        job_id=($(echo "$output" | tr ' ' '\n'))
-        echo "::set-output name=job_id::${job_id[2]}"
+        job_id=($(echo "$result" | tr ' ' '\n'))
+        echo "::set-output name=jobid::${job_id[2]}"
       shell: bash
